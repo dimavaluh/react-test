@@ -2,6 +2,8 @@
 @import "./scss/helpers/normalize.scss";
 
 $mobile-width: 768px;
+$purple: #3f51b5;
+$border-color: #ccc;
 
 @mixin bp-mobile {
   @media (max-width: $mobile-width) {
@@ -24,72 +26,102 @@ code {
     monospace;
 }
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
 .header {
-  background-color: #f5f5f5;
-  box-shadow: 0 4px 2px -2px gray;
-
+  box-shadow: 0 4px 2px -2px #bbbbbb;
   &__wrap {
-    > i {
-      color: #3f51b5;
-      cursor: pointer;
-    }
     min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include bp-mobile {
-      flex-direction: column;
-      padding-bottom: 8px;
+  }
+  &__logo {
+    cursor: pointer;
+    margin-right: 8px;
+    i {
+      font-size: 2em;
+      transition: 0.3s;
+      &:hover {
+        color: $purple;
+      }
     }
   }
 }
 
-.search-panel {
-  &__input {
-    min-width: 320px;
+.controls {
+  display: flex;
+  &__item {
+    border: none;
+    background-color: transparent;
+    font-size: 0.8em;
     padding: 8px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border: 1px solid #3f51b5;
-    border-right: none;
-    @include bp-mobile {
-      min-width: 1px;
-      width: calc(80% - 16px);
-    }
-  }
-  &__cta {
+    font-weight: 500;
     cursor: pointer;
-    padding: 8px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border: 1px solid #3f51b5;
-    color: #3f51b5;
-    font-weight: 600;
-    text-transform: uppercase;
-    @include bp-mobile {
-      min-width: 1px;
-      width: calc(20% - 16px);
+    transition: 0.3s;
+    &:hover {
+      color: $purple;
     }
   }
   @include bp-mobile {
-    padding: 8px;
+    display: none;
+  }
+}
+
+.search-panel {
+  display: flex;
+  min-width: 50%;
+  &__input {
+    font-size: 0.8em;
     width: 100%;
+    border: 1px solid $border-color;
+    border-right: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: transparent;
+    padding: 8px;
+    &:focus {
+      outline: none;
+      border: 1px solid $purple;
+      border-right: none;
+    }
+  }
+  &__cta {
+    i {
+      margin-top: 4px;
+      font-size: 1em;
+    }
+    cursor: pointer;
+    padding: 4px 16px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: transparent;
+    transition: 0.3s;
+    &:hover {
+      i {
+        color: #fff;
+      }
+      background-color: $purple;
+      border: 1px solid $purple;
+    }
   }
 }
 .feedback {
-  padding: 40px;
+  padding: 40px 16px;
   &__title {
-    font-size: 2em;
+    font-size: 1.6em;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    line-height: 1.2em;
   }
   &__description {
-    font-size: 1.2em;
+    font-size: 0.9em;
+    line-height: 1.4em;
     text-align: center;
   }
   &__list {
@@ -105,8 +137,17 @@ code {
 .package {
   cursor: pointer;
   width: calc(25% - 16px);
+  padding-bottom: 24px;
+  &:hover {
+  }
   @include bp-mobile {
-    width: calc(50% - 16px);
+    width: 100%;
+    margin: 8px 0;
+  }
+  &__name {
+    margin: 4px 0;
+    font-size: 0.8em;
+    font-weight: 600;
   }
   &__image {
     display: block;
@@ -158,56 +199,44 @@ code {
 .current-package {
   padding-top: 40px;
   padding-bottom: 40px;
-  &__title {
-    font-weight: 600;
-    font-size: 1.5em;
-    color: #3f51b5;
-  }
-  &__rating {
-    margin-left: 24px;
-    color: #fcba03;
-  }
-  &__location {
-    font-weight: 600;
-    margin: 4px 0;
-  }
   &__image {
     display: block;
     width: 100%;
     margin: 16px auto;
   }
-  &__details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+}
+
+.package-name {
+  &__title {
+    font-weight: 600;
+    font-size: 1.5em;
+    color: $purple;
+  }
+  &__rating {
+    margin-left: 24px;
+    color: #fcba03;
     @include bp-mobile {
-      flex-direction: column;
+      display: block;
+      margin: 8px 0;
     }
   }
-  &__details-wrap {
+  &__location {
+    font-weight: 600;
+    margin: 4px 0;
+  }
+}
+
+.package-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include bp-mobile {
+    flex-direction: column;
+  }
+  &__wrap {
     width: calc(70% - 16px);
     @include bp-mobile {
       width: calc(100% - 16px);
-    }
-  }
-  &__checkout {
-    width: calc(30% - 16px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 0;
-    @include bp-mobile {
-      width: calc(100% - 16px);
-    }
-    button {
-      cursor: pointer;
-      padding: 16px 32px;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.5em;
-      background-color: #ff5900;
     }
   }
   &__description {
@@ -217,9 +246,56 @@ code {
   &__comments {
     display: flex;
     align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #fbfbfb;
+    @include bp-mobile {
+      flex-direction: column;
+    }
   }
   &__comment {
     font-size: 2.5em;
     font-weight: 900;
+    @include bp-mobile {
+      font-size: 1.5em;
+      font-weight: 700;
+      text-align: center;
+    }
   }
+}
+
+.package-checkout {
+  width: calc(30% - 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  @include bp-mobile {
+    width: calc(100% - 16px);
+  }
+  &__title {
+    margin-bottom: 8px;
+    font-size: 0.8em;
+  }
+  &__cta {
+    cursor: pointer;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5em;
+    background-color: #ff5900;
+  }
+}
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  color: $purple;
+  font-weight: 900;
+  font-size: 2em;
+  text-transform: uppercase;
 }
