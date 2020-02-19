@@ -8,12 +8,16 @@ class Details extends React.Component {
     packages: Packages.data
   };
 
+  redirectTo = path => {
+    this.props.history.push(path);
+  };
+
   render() {
     const packageIndex = this.props.match.params.packageIndex;
     const packageInfo = this.state.packages[packageIndex];
     return (
       <>
-        <Header />
+        <Header redirectTo={this.redirectTo} />
 
         <section className="container current-package">
           <div className="package-name">

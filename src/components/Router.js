@@ -8,13 +8,12 @@ import NotFound from "./NotFound";
 
 class Router extends React.Component {
   render() {
-    console.log();
     return (
       <BrowserRouter>
         <Switch>
           {/* <Route exact path="/" component={() => <Home {...this.state} />} /> */}
           <Route exact path="/" component={Home} />
-          <Route path="/search/" component={Search} />
+          <Route path="/search/:country" component={Search} />
           <Route path="/details/:packageIndex" component={Details} />
           <Route component={NotFound} />
         </Switch>

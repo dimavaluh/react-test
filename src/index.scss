@@ -4,6 +4,8 @@
 $mobile-width: 768px;
 $purple: #3f51b5;
 $border-color: #ccc;
+$grey: #a3a3a3;
+$red: #ff5900;
 
 @mixin bp-mobile {
   @media (max-width: $mobile-width) {
@@ -285,7 +287,7 @@ code {
     color: #fff;
     font-weight: 700;
     font-size: 1.5em;
-    background-color: #ff5900;
+    background-color: $red;
   }
 }
 .not-found {
@@ -298,4 +300,90 @@ code {
   font-weight: 900;
   font-size: 2em;
   text-transform: uppercase;
+}
+
+.search-results {
+  &__title {
+    margin: 16px 0 0;
+    font-size: 0.8em;
+  }
+}
+
+.search-result {
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  margin: 16px 0;
+  &__image {
+    border-radius: 4px;
+    display: block;
+    width: 40%;
+    @include bp-mobile {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  }
+  @include bp-mobile {
+    flex-direction: column;
+  }
+}
+
+.search-result-content {
+  width: 60%;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  @include bp-mobile {
+    width: 100%;
+    padding: 0;
+  }
+  &__title {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 16px 0;
+  }
+  &__description {
+    color: $grey;
+    font-size: 0.9em;
+    width: 80%;
+    line-height: 1.4em;
+  }
+}
+
+.search-result-additional {
+  padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__type {
+    font-size: 0.8em;
+    color: $grey;
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: 700;
+    i {
+      font-size: 1em;
+      color: $red;
+    }
+  }
+}
+.search-result-price {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__badge {
+    font-weight: 900;
+    font-size: 0.7em;
+    padding: 8px 16px;
+    background-color: $border-color;
+    border-radius: 16px;
+  }
+  &__price {
+    font-size: 0.9em;
+  }
 }

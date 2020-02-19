@@ -1,24 +1,32 @@
 import React from "react";
 
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-
 class Header extends React.Component {
+  country = React.createRef();
+
+  goHome = () => {
+    this.props.redirectTo("/");
+  };
+
+  handleSearch = event => {
+    event.preventDefault();
+    this.props.redirectTo(`/search/${this.country.current.value}`);
+  };
+
   render() {
     return (
       <header className="header">
         <div className="container header__wrap">
-          <div className="header__logo">
-            <i class="material-icons">trip_origin</i>
+          <div className="header__logo" onClick={this.goHome}>
+            <i className="material-icons">trip_origin</i>
           </div>
-          <form className="search-panel">
+          <form className="search-panel" onSubmit={this.handleSearch}>
             <input
               className="search-panel__input"
               placeholder="What country you'd like to visit"
               ref={this.country}
             />
             <button className="search-panel__cta" type="submit">
-              <i class="material-icons">search</i>
+              <i className="material-icons">search</i>
             </button>
           </form>
           <div className="controls">

@@ -18,15 +18,14 @@ class Home extends React.Component {
     this.props.history.push(`/details/${index}`);
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.history.push(`/search/${this.country.current.value}`);
+  redirectTo = path => {
+    this.props.history.push(path);
   };
 
   render() {
     return (
       <>
-        <Header />
+        <Header redirectTo={this.redirectTo} />
         <section className="container feedback">
           <h2 className="feedback__title">
             What guests are saying about homes in the United Kingdom
